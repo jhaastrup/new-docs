@@ -9,9 +9,6 @@ const Page = ({ data }) => {
     const { slug,chapter } = router.query
 
    //console.log("what to expect",data.map((item)=>item.section));
-console.log(data);
-     const fab =  data.map((item)=>item.section) 
-     //console.log(fab)
      //console.log('what i need',fab.map((dd)=>dd.name))
     //console.log(typeof(data));
     //const { section = '' } = data
@@ -22,7 +19,20 @@ console.log(data);
          {data.map((item)=> 
         <div>
         <h1>{item.title}</h1>
+        <div>
+          {item.section?.map((sectionData) => (
+            <>
+            <div id={sectionData.name} key={sectionData.name}>
+            <h4><Link href={`/${slug}/${chapter}#${sectionData.name}`}>
+            {sectionData.title}
+            </Link>
+            </h4>
+              <p>{sectionData.content}</p>
+            </div>
+            </>
+          ))}
         </div>
+        </div> 
         )}
     </div>
      
